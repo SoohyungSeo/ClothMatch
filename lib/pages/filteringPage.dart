@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:clothes_match/pages/Detail.dart';
 import 'package:clothes_match/pages/homepage.dart';
 import 'package:flutter/material.dart';
 
@@ -17,10 +18,17 @@ class _HomePageState extends State<FilteringPage> {
       appBar: AppBar(
         elevation: 0.0,
         backgroundColor: Colors.white,
-        leadingWidth: 5000,
-        leading: Row(
+        iconTheme: IconThemeData(color: Colors.black),
+        leading: BackButton(
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const HomePage()),
+            );
+          },
+        ),
+        title: Row(
           children: [
-            SizedBox(width: 10),
             Image.asset(
               'assets/appbarclothesmatch.png',
             ),
@@ -33,108 +41,124 @@ class _HomePageState extends State<FilteringPage> {
             decoration: BoxDecoration(color: Colors.white),
             child: Column(
               children: [
-                ListView(
-                  scrollDirection: Axis.horizontal,
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        SizedBox(
-                          width: 10,
-                        ),
-                        IconButton(
-                          onPressed: () {},
-                          icon: Image.asset('assets/filtering.png'),
-                          iconSize: 50,
-                        ),
-                        Directionality(
-                          textDirection: TextDirection.rtl,
-                          child: ElevatedButton.icon(
-                            style: ElevatedButton.styleFrom(
-                              elevation: 0,
-                              primary: Colors.black,
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10)),
-                            ),
-                            label: Text(
-                              '다이마루',
-                              style: TextStyle(
-                                  color: Colors
-                                      .white), // text 안에 있는 부분을 setState string filter = 1
-                            ),
-                            icon: Icon(
-                              Icons.keyboard_arrow_down_outlined,
-                              color: Colors.white,
-                            ),
-                            onPressed: () async {
-                              final filter1 = await showAlertDialog1(context);
-                              if (filter1 == null) return;
-                              print(filter1);
-                            },
+                SizedBox(
+                  height: 50,
+                  child: ListView(
+                    scrollDirection: Axis.horizontal,
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          SizedBox(
+                            width: 10,
                           ),
-                        ),
-                        SizedBox(
-                          width: 8,
-                        ),
-                        Directionality(
-                          textDirection: TextDirection.rtl,
-                          child: ElevatedButton.icon(
-                            style: ElevatedButton.styleFrom(
-                              elevation: 0,
-                              primary: Colors.grey[100],
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10)),
-                            ),
-                            label: Text(
-                              '최소수량',
-                              style: TextStyle(
-                                  color: Colors
-                                      .black), // text 안에 있는 부분을 setState string filter = 1
-                            ),
-                            icon: Icon(
-                              Icons.keyboard_arrow_down_outlined,
-                              color: Colors.black,
-                            ),
-                            onPressed: () async {
-                              final filter2 = await showAlertDialog2(context);
-                              if (filter2 == null) return;
-                              print(filter2);
-                            },
+                          IconButton(
+                            onPressed: () {},
+                            icon: Image.asset('assets/filtering.png'),
+                            iconSize: 50,
                           ),
-                        ),
-                        SizedBox(
-                          width: 8,
-                        ),
-                        ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            elevation: 0,
-                            primary: Colors.grey[100],
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10)),
+                          Directionality(
+                            textDirection: TextDirection.rtl,
+                            child: ElevatedButton.icon(
+                              style: ElevatedButton.styleFrom(
+                                elevation: 0,
+                                primary: Colors.black,
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10)),
+                              ),
+                              label: Text(
+                                '다이마루',
+                                style: TextStyle(
+                                    color: Colors
+                                        .white), // text 안에 있는 부분을 setState string filter = 1
+                              ),
+                              icon: Icon(
+                                Icons.keyboard_arrow_down_outlined,
+                                color: Colors.white,
+                              ),
+                              onPressed: () async {
+                                final filter1 = await showAlertDialog1(context);
+                                if (filter1 == null) return;
+                                print(filter1);
+                              },
+                            ),
                           ),
-                          child: Text(
-                            '작업형태',
-                            style: TextStyle(color: Colors.black),
+                          SizedBox(
+                            width: 8,
                           ),
-                          onPressed: () async {
-                            final filter3 = await showAlertDialog3(context);
-                            if (filter3 == null) return;
-                            print(filter3);
-                          },
-                        ),
-                        SizedBox(
-                          width: 20,
-                        ),
-                      ],
-                    ),
-                  ],
+                          Directionality(
+                            textDirection: TextDirection.rtl,
+                            child: ElevatedButton.icon(
+                              style: ElevatedButton.styleFrom(
+                                elevation: 0,
+                                primary: Colors.grey[100],
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10)),
+                              ),
+                              label: Text(
+                                '최소수량',
+                                style: TextStyle(
+                                    color: Colors
+                                        .black), // text 안에 있는 부분을 setState string filter = 1
+                              ),
+                              icon: Icon(
+                                Icons.keyboard_arrow_down_outlined,
+                                color: Colors.black,
+                              ),
+                              onPressed: () async {
+                                final filter2 = await showAlertDialog2(context);
+                                if (filter2 == null) return;
+                                print(filter2);
+                              },
+                            ),
+                          ),
+                          SizedBox(
+                            width: 8,
+                          ),
+                          Directionality(
+                            textDirection: TextDirection.rtl,
+                            child: ElevatedButton.icon(
+                              style: ElevatedButton.styleFrom(
+                                elevation: 0,
+                                primary: Colors.grey[100],
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10)),
+                              ),
+                              label: Text(
+                                '작업형태',
+                                style: TextStyle(
+                                    color: Colors
+                                        .black), // text 안에 있는 부분을 setState string filter = 1
+                              ),
+                              icon: Icon(
+                                Icons.keyboard_arrow_down_outlined,
+                                color: Colors.black,
+                              ),
+                              onPressed: () async {
+                                final filter2 = await showAlertDialog2(context);
+                                if (filter2 == null) return;
+                                print(filter2);
+                              },
+                            ),
+                          ),
+                          SizedBox(
+                            width: 20,
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
                 Divider(
                   height: 2,
                 ),
                 GestureDetector(
                   onTap: (() {
-                    print('탭');
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const DetailPage()),
+                    );
                   }),
                   child: Row(
                     children: [
@@ -146,7 +170,7 @@ class _HomePageState extends State<FilteringPage> {
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(20),
                             image: DecorationImage(
-                              image: AssetImage('assets/promotionlogo.jpg'),
+                              image: AssetImage('assets/spartapromotion.jpg'),
                             ),
                           ),
                         ),
@@ -177,6 +201,7 @@ class _HomePageState extends State<FilteringPage> {
                           Row(
                             children: [
                               Container(
+                                alignment: Alignment.center,
                                 width: 64,
                                 height: 28,
                                 decoration: BoxDecoration(
@@ -196,6 +221,7 @@ class _HomePageState extends State<FilteringPage> {
                                 width: 8,
                               ),
                               Container(
+                                alignment: Alignment.center,
                                 width: 80,
                                 height: 28,
                                 decoration: BoxDecoration(
@@ -215,6 +241,7 @@ class _HomePageState extends State<FilteringPage> {
                                 width: 8,
                               ),
                               Container(
+                                alignment: Alignment.center,
                                 width: 52,
                                 height: 28,
                                 decoration: BoxDecoration(
